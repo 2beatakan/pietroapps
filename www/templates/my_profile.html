@@ -1,0 +1,160 @@
+<ion-header-bar align-title="left">
+    <div class="buttons">
+        <button id="profile-menu-icon" class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </div>
+    <div class="title-views" style="margin-right: 0">
+        <span>Profilim</span>
+    </div>
+    <a class="button button-icon icon ion-edit" ng-click="enableEditProfile()" ng-hide="editingProfile"></a>
+    <a class="button button-icon icon ion-checkmark-round" ng-click="saveProfileChanges()" ng-show="editingProfile"></a>
+</ion-header-bar>
+<ion-content ng-hide="loadingProfile">
+    <div class="myprofile-pics-bg">
+        <button class="button button-icon button-clear ion-chevron-left" ng-click="previousPic()" ng-hide="editingProfile || slideIndex == 0"></button>
+        <button class="button button-icon button-clear ion-chevron-right" ng-click="nextPic()" ng-hide="editingProfile || slideIndex == user.photos.length - 1"></button>
+
+        <ion-slide-box style="height: 100%;" on-slide-changed="" show-pager="{{user.photos.length <= 10}}" ng-hide="editingProfile">
+            <ion-slide ng-repeat="imageUrl in user.photos">
+                <!--ng-style="{background:'url(' + imageUrl + ')'}"-->
+                <div class="pic-container">
+                    <ion-spinner class="default-spinner" ng-show="loadingProfilePics"></ion-spinner>
+                    <img ng-src="{{imageUrl}}" ng-load-image="imageLoaded()" ng-hide="loadingProfilePics">
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+
+        <button class="button button-icon button-clear user-photo-thumbnail" ng-click="addPic()" ng-show="editingProfile">
+            <i class="icon ion-images" style="position: relative;top: 15px;left: 5px;"></i>
+            <br />
+            <label style="font-size: 14px;">Fotoğraf Ekle</label>
+        </button>
+
+        <div class="user-photo-thumbnail" ng-repeat="thumb in user.photos" ng-style="{background:'url(' + thumb + ')'}" ng-click="openPicFullScreen($index)" ng-show="editingProfile">
+            <div class="upload-progress" ng-style="{'width': progressW + 'vw'}" ng-show="$index == 0"></div>
+        </div>
+    </div>
+
+    <div class="myprofile-info-bg">
+        <div class="row">
+            <div class="col" style="display: inline-flex">
+                <span class="profile-name">
+                    <span style="font-family: LeituraSansBold">{{user.name}}</span>, {{user.age}}
+                </span>
+                <i class="icon ion-checkmark-circled verified-icon" style="margin-top: -6px;margin-left: 8px;" ng-show="user.verified == 1"></i>
+                <!--<div class="online-icon-profile" ng-show="user.status == 1"></div>-->
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: -20px">
+            <div class="col">
+                <p class="about-me-desc">
+                    <i class="icon ion-location"></i>
+                    {{user.location}}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <i class="icon ion-briefcase"></i>
+                <b>iş</b>
+                <p class="about-me-desc" ng-hide="editingProfile">
+                    {{user.work}}
+                </p>
+                <div class="list" ng-show="editingProfile">
+                    <label class="item item-input">
+                        <input type="text" placeholder="İşi girin" ng-model="user.work">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <i class="icon ion-university"></i>
+                <b>Üniversite</b>
+                <p class="about-me-desc" ng-hide="editingProfile">
+                    {{user.education}}
+                </p>
+                <div class="list" ng-show="editingProfile">
+                    <label class="item item-input">
+                        <input type="text" placeholder="Üniversiteyi girin" ng-model="user.education">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <i class="icon ion-person" style="margin-right: 8px;"></i>
+                <b>Hakkımda</b>
+                <p class="about-me-desc" ng-hide="editingProfile">
+                    {{user.aboutme}}
+                </p>
+                <div class="list" ng-show="editingProfile">
+                    <label class="item item-input">
+                        <input type="text" placeholder="Kendinle ilgili bir açıklama yap" ng-model="user.aboutme">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <i class="icon ion-earth"></i>
+                <b>Dil</b>
+                <p class="about-me-desc" ng-hide="editingProfile">
+                    {{user.languages}}
+                </p>
+                <div class="list" ng-show="editingProfile">
+                    <label class="item item-input">
+                        <input type="text" placeholder="dil seçin" ng-model="user.languages">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <i class="icon ion-heart"></i>
+                <b>Konum</b>
+                <p class="about-me-desc" ng-hide="editingProfile">
+                    {{user.looking_to}}
+                </p>
+                <div class="combobox" ng-show="editingProfile" style="border: 1px solid #BBB5B5;">
+                    <select ng-model="user.looking_to" style="color: black">
+                        <option value="">Bir Seçenek Seçin</option>
+                        <option value="Date">Flört</option>
+                        <option value="Chat">Sohbet</option>
+                        <option value="Friends">Arkadaşlık</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <i class="icon ion-flame" style="margin-right: 10px;"></i>
+                <b>Pietro Skor&reg;</b>
+                <p class="about-me-desc">
+                    Şimdiki skor: <b>{{user.score}}</b>
+                </p>
+                <p class="about-me-desc">
+                    Popülerlik Sırası: <b>1642</b>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <i class="icon ion-ribbon-b" style="margin-right: 8px;"></i>
+                <b>Premium Üyelik</b>
+                <p class="about-me-desc">
+                    Aktif Değil - <a>Aktif</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+
+<ion-content class="profile-info-bg" ng-show="loadingProfile">
+    <div class="text-center def-spinner-container" style="top: 65%;">
+        <ion-spinner class="default-spinner"></ion-spinner>
+    </div>
+</ion-content>
+
+<div ng-include="'templates/notification_msg.html'"></div>

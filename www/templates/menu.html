@@ -1,0 +1,68 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left">
+        <ion-content>
+            <ion-list>
+                <a menu-close class="item item-avatar" ng-click="goToPage('app/myprofile')">
+                    <img class="left-menu-pic" ng-class="user.gender == 'Male' ? 'male' : 'female'" ng-src="{{user.photos[0]}}">
+                    <h2>{{user.name}}</h2>
+                    <i class="icon ion-android-favorite-outline"> <b>{{user.totalLikes}}</b></i>
+                    <i class="icon ion-ios-chatbubble-outline"> <b>{{user.totalMsgs}}</b></i>
+                    <button class="button button-icon icon ion-gear-a" menu-close ng-click="goToSettings($event)"></button>
+                </a>
+                <ion-item menu-close href="#/app/matching">
+                    <i class="icon ion-images"></i>
+                    Eşleşme Bul
+                </ion-item>
+                <ion-item menu-close href="#/app/peoplenearby">
+                    <i class="icon ion-android-locate"></i>
+                    Yakındaki Kişiler
+                </ion-item>
+                <ion-item menu-close href="#/app/search">
+                    <i class="icon ion-search"></i>
+                    Kişi Ara
+                </ion-item>
+                <ion-item menu-close href="#/app/visitors">
+                    <i class="icon ion-eye"></i>
+                    Ziyaretçiler
+                    <span class="badge badge-assertive" ng-show="notifications.new_visitors > 0">{{notifications.new_visitors}}</span>
+                </ion-item>
+                <ion-item menu-close href="#/app/matches">
+                    <i class="icon ion-ios-people"></i>
+                    Eşleşmeler
+                    <span class="badge badge-assertive" ng-show="notifications.new_matches > 0">{{notifications.new_matches}}</span>
+                </ion-item>
+                <ion-item menu-close href="#/app/likes">
+                    <i class="icon ion-heart"></i>
+                    Beni Kim Beğenmiş
+                    <span class="badge badge-assertive" ng-show="notifications.new_likes > 0">{{notifications.new_likes}}</span>
+                </ion-item>
+                <ion-item menu-close href="#/app/favorites">
+                    <i class="icon ion-star"></i>
+                    Favorilerim
+                </ion-item>
+                <ion-item menu-close href="#/app/messages">
+                    <i class="icon ion-chatbubbles"></i>
+                    Mesajlar
+                    <span class="badge badge-assertive" ng-show="notifications.unread_msg > 0">{{notifications.unread_msg}}</span>
+                </ion-item>
+                <!--<ion-item menu-close href="#/app/events">-->
+                    <!--<i class="icon ion-calendar"></i>-->
+                    <!--Events-->
+                    <!--&lt;!&ndash;<span class="badge badge-assertive" ng-show="notifications.new_events > 0">{{notifications.new_events}}</span>&ndash;&gt;-->
+                <!--</ion-item>-->
+                <!--<ion-item menu-close href="#/app/messages">-->
+                    <!--<i class="icon ion-card"></i>-->
+                    <!--Pietro Premium-->
+                <!--</ion-item>-->
+                <!--<ion-item menu-close href="http://www.erosify.com">-->
+                    <!--<i class="icon ion-help-circled"></i>-->
+                    <!--Help & FAQs-->
+                <!--</ion-item>-->
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

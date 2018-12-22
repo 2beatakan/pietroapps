@@ -1,0 +1,45 @@
+<ion-header-bar align-title="left">
+    <div class="buttons">
+        <button class="button button-icon button-clear ion-ios-arrow-back" ng-click="$ionicGoBack()"></button>
+    </div>
+    <div class="chat-title-top">
+        <span>{{userInfo.name}}</span>
+        <div class="row">
+            <span>{{userInfo.status == 1 ? "Online now" : "Offline"}}</span>
+            <div class="status-icon-sm" ng-class="userInfo.status ? 'online' : 'offline'"></div>
+        </div>
+    </div>
+    <a class="button button-icon" ng-click="goToProfile(userInfo.id)" style="position: absolute;right: 0;line-height: 20px;">
+        <img ng-src="{{userInfo.photos[0]}}" class="user-pic-sm">
+    </a>
+</ion-header-bar>
+<ion-content has-bouncing="true" class="gradient-bg" delegate-handle="userMessageScroll" id="chat-window">
+    <div ng-repeat="msg in messages" ng-class="{other: msg.name != userInfo.name}" class="messages">
+        <img class="profile-pic-chat" ng-src="{{userInfo.photos[0]}}" ng-show="msg.name == userInfo.name">
+        <div ng-class="msg.name == userInfo.name ? 'left-msg' : 'right-msg'" class="message" ng-hide="msg.name == 'Date Divider'">
+            <span class="msg">
+                {{ msg.content }}
+                <br />
+                <span class="sm-time-chat">{{ msg.time }}</span>
+            </span>
+        </div>
+        <div ng-show="msg.name == 'Date Divider'" class="message">
+            <span class="msg date-divider" style="color: white!important;padding: 2px 5px 0!important;background: rgba(0, 150, 136, 0.58)!important;">
+                {{ msg.content }}
+            </span>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer-bar class="footer-chat" keyboard-attach>
+    <form ng-submit="sendMessage()" class="chat-inputbox-container">
+        <div class="list list-inset test">
+            <label class="item item-input" style="padding-left: 0">
+                <a class="button button-icon icon ion-android-happy"></a>
+                <textarea cols="40" rows="5" class="chat-inputbox" placeholder="Type a message" ng-model="chat.message" autocapitalize="off" required></textarea>
+                <!--<input type="text" class="chat-inputbox" placeholder="Type a message" ng-model="chat.message" autocapitalize="off" required>-->
+                <button class="button button-icon ion-android-send placeholder-icon" style="font-size: 25px;color: white;line-height: 26px;min-height: 25px;padding-right: 10px" ng-disabled="!chat.message"></button>
+            </label>
+        </div>
+    </form>
+</ion-footer-bar>

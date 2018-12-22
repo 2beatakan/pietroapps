@@ -1,0 +1,45 @@
+<ion-header-bar align-title="left">
+    <div class="buttons">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </div>
+    <div class="title-views" style="margin-right: 0">
+        <span>Yakındaki Kişiler</span>
+    </div>
+    <a class="button button-icon icon ion-android-options" ng-click="openFilterOptions()"></a>
+</ion-header-bar>
+<ion-content class="gradient-bg">
+    <div class="row" ng-show="searching">
+        <div class="col text-center">
+            <ion-spinner class="loading-nearby" icon="ripple"></ion-spinner>
+            <br />
+            <span class="label-searching-gps">Kişiler Aranıyor...</span>
+        </div>
+    </div>
+
+    <div class="row" ng-hide="searching">
+        <div class="col text-center" style="padding-left: 15px;padding-right: 15px">
+            <i class="icon ion-location people-nearby-icon"></i>
+            <span><b>{{totalFound}}</b> Mevcut kişi {{filters.miles}} km. uzaklıkta.</span>
+        </div>
+    </div>
+
+    <ion-refresher on-refresh="findPeopleNearby()" spinner="ios"></ion-refresher>
+
+    <div class="row" ng-repeat="row in people" ng-hide="searching">
+        <div class="col-33 text-center" ng-repeat="m in row">
+            <a class="button button-icon" style="width: 100%;line-height: 25px;" ng-click="goToProfile(m.id)">
+                <img class="prof-pic-match" ng-src="{{m.photos[0]}}" ng-load-image="imageLoaded()">
+            </a>
+            <br>
+            <div style="display: inline-flex; text-align: center">
+                <div class="status-icon-small online" ng-show="m.status == 1"></div>
+                <span class="match-user">{{m.name}}</span>
+                <i class="icon ion-checkmark-circled verified-icon-list" ng-show="m.verified == 1"></i>
+            </div>
+            <br>
+            <span class="match-date">{{m.distance}} km</span>
+        </div>
+    </div>
+</ion-content>
+
+<div ng-include="'templates/notification_msg.html'"></div>

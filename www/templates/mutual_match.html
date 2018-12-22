@@ -1,0 +1,18 @@
+<div class="text-center">
+    <img src="img/logo-green.png" width="110">
+
+    <p class="match-popup-headline">Pietro senin için yeni bir eşleşme buldu</p>
+
+    <img class="match-popup-pic" ng-src="{{userProfile.photos[0]}}" ng-class="userProfile.gender == 'Female' ? 'female' : 'male'">
+    <img class="match-popup-pic" ng-src="{{currentProfile.photos[0]}}" ng-class="currentProfile.gender == 'Female' ? 'female' : 'male'">
+
+    <p class="text-center" style="font-size: 12px">Sen ve <b>{{ currentProfile.name }}</b> birbirinizi beğendiniz</p>
+
+    <button class="button icon-left ion-ios-chatboxes-outline button-block button-outline button-balanced" ng-click="sendMessageToUser()">
+        Sohbete Başla
+    </button>
+
+    <button class="button icon-left ion-ios-heart-outline button-block button-outline button-stable" ng-click="closePopup()">
+        Aramaya Devam Et
+    </button>
+</div>

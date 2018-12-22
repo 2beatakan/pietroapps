@@ -1,0 +1,27 @@
+<div class="text-center">
+    <i class="ion ion-android-hand report-dialog-icon"></i>
+
+    <p class="report-popup-headline">Kullanıcıyı Rapor Et</p>
+
+    <p class="text-center">Kullanıcıyı neden şikayet edeceğinizi bize bildirin</p>
+
+    <div class="combobox" style="margin-top: 20px;">
+        <select ng-model="report.reason" required style="left: 15px;" ng-change="onSelectionChange()">
+            <option value="">Bir Sebep Seçin</option>
+            <option value="Inappropriate Photos">Uygunsuz Fotoğraf</option>
+            <option value="Fake Profile">Sahte Profil</option>
+            <option value="Spam or Scam">Spam</option>
+            <option value="Other Reason">Diğer Nedenler</option>
+        </select>
+    </div>
+
+    <div class="group" ng-show="report.showHiddenText">
+        <input type="text" ng-model="report.comment" required>
+        <span class="bar-input"></span>
+        <label class="left-labels">Yorumlar</label>
+    </div>
+
+    <button class="button button-block button-outline button-assertive" ng-click="reportUser()" ng-disabled="report.loading">Kullanıcıyı Rapor Et</button>
+
+    <button class="button button-block button-outline button-stable" ng-click="closeReportPopup()">Cancel</button>
+</div>

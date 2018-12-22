@@ -1,0 +1,30 @@
+<ion-view view-title="Pietro">
+  <ion-content class="home-container">
+      <div class="logo-container">
+          <img src="img/logo.png" width="100%">
+
+          <div class="divider-home"></div>
+
+          <span>Pietro sizi çevrenizdeki yeni insanlarla tanıştırmasına izin verin</span>
+      </div>
+
+      <button class="button get-started-btn" ng-click="goToPage('signup')">Kayıt ol</button>
+
+      <div class="row text-center" style="position: absolute; bottom: 95px;">
+          <div class="col">
+            <div style="width: 20%;background: rgba(211, 211, 211, 0.5);height: 1px;position: absolute;top: 18px;left: 23%"></div>
+              OR
+            <div style="width: 20%;background: rgba(211, 211, 211, 0.5);height: 1px;position: absolute;top: 18px;right: 24%;"></div>
+          </div>
+      </div>
+
+      <button class="button get-started-btn-fb" ng-click="signUpWithFacebook()">
+          <i class="icon ion-social-facebook-outline"></i>
+          Facebook ile kayıt ol
+      </button>
+
+      <div class="bottom-link-home">
+          <span>Zaten üyemisiniz? <a href="" ng-click="goToPage('login')">Giriş yapın</a></span>
+      </div>
+  </ion-content>
+</ion-view>

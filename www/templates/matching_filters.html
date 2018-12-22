@@ -1,0 +1,61 @@
+<ion-modal-view>
+    <ion-header-bar align-title="left" class="bar bar-header">
+        <div class="buttons">
+            <button class="button button-icon button-clear ion-close-round" ng-click="closeModal()"></button>
+        </div>
+        <div class="title-views" style="margin-right: 0">
+            <span>Filtreler</span>
+        </div>
+        <div class="buttons">
+            <button class="button button-icon button-clear ion-checkmark-round" ng-click="applyFilters()"></button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="padding">
+
+        <div class="list">
+            <div class="item item-divider">Göster:</div>
+
+            <div class="item row" style="width: auto">
+                <div class="col-50 text-center">
+                    <div class="gender-button" ng-click="selectGender('Male')" ng-class="filters.gender['Male'] ? 'gender-selected' : ''">
+                        <i class="icon ion-man"></i>
+                    </div>
+                    Men
+                </div>
+                <div class="col-50 text-center">
+                    <div class="gender-button" ng-click="selectGender('Female')" ng-class="filters.gender['Female'] ? 'gender-selected' : ''">
+                        <i class="icon ion-woman"></i>
+                    </div>
+                    Women
+                </div>
+            </div>
+        </div>
+
+        <div class="list">
+            <div class="item item-divider">Kim:</span></div>
+            <label class="item item-input item-select">
+                <div class="input-label">Meraklı</div>
+                <select ng-model="filters.interest">
+                    <option value="Date" selected>Flört</option>
+                    <option value="Chat">Sohbet</option>
+                    <option value="Friends">Arkadaşlık</option>
+                    <option value="">Herkes</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="list">
+            <div class="item item-divider">Arama mesafesi: <span style="float: right">{{filters.miles == 100 ? filters.miles + '+' : filters.miles}}km.</span></div>
+            <div class="item range range-energized">
+                <input type="range" name="distance" min="0" max="100" ng-model="filters.miles">
+            </div>
+        </div>
+
+        <div class="list">
+            <div class="item item-divider">Yaş: <span style="float: right">{{filters.ageFrom}} - {{filters.ageTo == 55 ? '55+' : filters.ageTo}}</span></div>
+            <div class="item range range-energized">
+                <ui-multi-range ng-step="1" ng-min="filters.ageMin" ng-max="filters.ageMax" ng-model-min="filters.ageFrom" ng-model-max="filters.ageTo"></ui-multi-range>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

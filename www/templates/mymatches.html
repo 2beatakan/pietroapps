@@ -1,0 +1,43 @@
+<ion-header-bar align-title="left">
+    <div class="buttons">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </div>
+    <div class="title-views">
+        <span>Eşleşmelerim</span>
+    </div>
+</ion-header-bar>
+<ion-content class="gradient-bg">
+    <ion-refresher on-refresh="getListMatches()" spinner="ios"></ion-refresher>
+    <div style="padding-top: 15px" ng-hide="loadingMatches">
+        <div class="row matches-row" ng-repeat="row in myMatches">
+            <div class="col-33 text-center" ng-repeat="m in row">
+                <ion-spinner class="default-spinner" ng-show="loadingImg"></ion-spinner>
+                <a class="button button-icon" style="width: 100%" ng-click="goToProfile(m.id)" ng-hide="loadingImg">
+                    <img class="prof-pic-match" ng-src="{{m.photos[0]}}" ng-load-image="imageLoaded()">
+                    <div ng-show="m.unread == 1" class="new-visitor"><span>Yeni</span></div>
+                </a>
+                <br>
+                <div style="display: inline-flex; text-align: center">
+                    <div class="status-icon-small online" ng-show="m.status == 1"></div>
+                    <span class="match-user">{{m.name}}</span>
+                    <i class="icon ion-checkmark-circled verified-icon-list" ng-show="m.verified == 1"></i>
+                </div>
+                <br>
+                <span class="match-date">{{m.date}}</span>
+            </div>
+        </div>
+
+        <div class="row no-data-container" ng-show="noResults">
+            <div class="col">
+                <i class="icon ion-sad" style="font-size: 50px"></i>
+                <p class="text-center">Buralarda kimse yok</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center def-spinner-container" ng-show="loadingMatches">
+        <ion-spinner class="default-spinner"></ion-spinner>
+    </div>
+</ion-content>
+
+<div ng-include="'templates/notification_msg.html'"></div>

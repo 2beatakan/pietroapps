@@ -1,0 +1,73 @@
+<ion-header-bar align-title="left">
+    <div class="buttons">
+        <button id="settings-menu-icon" class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </div>
+    <div class="title-views">
+        <span>Ayarlar</span>
+    </div>
+</ion-header-bar>
+<ion-content class="settings-bg">
+
+        <ul class="list">
+            <div class="item item-divider">
+                Bildirimler
+                <i class="icon ion-android-notifications" style="float: right;font-size: 23px;"></i>
+            </div>
+            <li class="item item-toggle">
+                Yeni Eşleşme
+                <label class="toggle toggle-calm">
+                    <input type="checkbox" checked>
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+            <li class="item item-toggle">
+               Mesajlar
+                <label class="toggle toggle-calm">
+                    <input type="checkbox" checked>
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+            <li class="item item-toggle">
+                Olaylar
+                <label class="toggle toggle-calm">
+                    <input type="checkbox" checked>
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+        </ul>
+
+        <div class="list">
+            <div class="item item-divider">
+                Yasal
+                <i class="icon ion-document-text" style="float: right;font-size: 23px;"></i>
+            </div>
+            <a class="item" ng-click="openPrivacyPolicy()">
+                    Gizlilik Politikası
+            </a>
+            <a class="item" ng-click="openTermsOfService()">
+                Kullanım Şartları
+            </a>
+        </div>
+
+        <div class="button-logout" ng-click="logOut()">Sign Out</div>
+
+        <div class=" row text-center" style="margin: 20px 0;">
+            <div class="col">
+                <img src="img/logo-green.png">
+                <br />
+                <span>&copy; 2019. Pietro</span><br />
+                <span>Version 1.0.0</span>
+            </div>
+        </div>
+
+        <div class="button-logout" ng-click="deleteAccount()" style="color: orangered">Üyeliği Sil</div>
+        <br />
+</ion-content>
+
+

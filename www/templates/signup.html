@@ -1,0 +1,89 @@
+<ion-view view-title="Pietro">
+    <ion-header-bar align-title="left" style="background: #65beb3!important;">
+        <div class="buttons">
+            <button class="button button-icon ion-ios-arrow-back btn-back" ng-click="$ionicGoBack()"></button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="login-container gradient-bg">
+        <div class="login-inputs-container" style="padding-top: 30px;">
+            <form class="signup-form" ng-submit="signUp()">
+                <div class="group">
+                    <input type="email" ng-model="user.email" ng-blur="checkAccountAvailability()" autocapitalize="off">
+                    <span class="bar-input"></span>
+                    <label class="left-labels">E-Posta</label>
+                </div>
+
+                <div class="group">
+                    <input type="{{inputType}}" ng-model="user.password" autocapitalize="off">
+                    <span class="bar-input"></span>
+                    <label class="left-labels">Şifre</label>
+                    <a class="button button-icon icon" ng-click="showHidePassword()" ng-class="inputType == 'password' ? 'ion-eye' : 'ion-eye-disabled'"></a>
+                </div>
+
+                <div class="group">
+                    <input type="text" ng-model="user.name">
+                    <span class="bar-input"></span>
+                    <label class="left-labels">İsim</label>
+                </div>
+
+                <div class="combobox">
+                    <select ng-model="user.gender">
+                        <option value="">Cinsiyet</option>
+                        <option value="Male">Erkek</option>
+                        <option value="Female">Kız</option>
+                    </select>
+                </div>
+
+                <div class="combobox">
+                    <select ng-model="user.looking_to">
+                        <option value="">Nasıl Vakit Geçireceksin</option>
+                        <option value="Date">Flört</option>
+                        <option value="Chat">Sohbet</option>
+                        <option value="Friends">Arkadaşlık</option>
+                    </select>
+                </div>
+
+                <div class="text-center">
+                    <span>Doğum Günü</span>
+                </div>
+
+                <div class="row" style="padding: 0;margin-bottom: 10px">
+                    <div class="col-45">
+                        <div class="combobox">
+                            <select ng-model="user.month">
+                                <option value="">Ay</option>
+                                <option value="{{m.value}}" ng-repeat="m in months">{{m.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-25">
+                        <div class="combobox">
+                            <select ng-model="user.day">
+                                <option value="">Gün</option>
+                                <option value="{{d}}" ng-repeat="d in days">{{d}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-30">
+                        <div class="combobox">
+                            <select ng-model="user.year">
+                                <option value="">Yıl</option>
+                                <option value="{{y}}" ng-repeat="y in years">{{y}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button class="button button-login" type="submit">Kayıt Ol</button>
+                    <div class="terms">
+                        <span>ve tanışmaya başla <br />
+                            <b><a href="" ng-click="openTermsOfService()">Kullanım Şartları</a></b> ve <b><a href="" ng-click="openPrivacyPolicy()">Gizlilik Politikası </a></b>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>
